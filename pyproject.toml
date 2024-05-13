@@ -1,13 +1,18 @@
 [project]
 name = "jupyter-server-client"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.0.1"
+description = "A Python-based Jupyter server Client that allows you to directly connect to a deployed Jupyter server, notebook, lab, etc."
 authors = [
     { name = "Haskely", email = "Haskely@live.com" }
 ]
 dependencies = []
 readme = "README.md"
 requires-python = ">= 3.8"
+
+[project.urls]
+"Homepage" = "https://github.com/Haskely/jupyter-server-client"
+"Bug Reports" = "https://github.com/Haskely/jupyter-server-client/issues"
+"Source" = "https://github.com/Haskely/jupyter-server-client"
 
 [build-system]
 requires = ["hatchling"]
