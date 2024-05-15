@@ -1,0 +1,135 @@
+执行代码:
+print('hello world')
+
+from tqdm import tqdm
+
+for _ in tqdm(range(5)):
+    time.sleep(0.2)
+
+print('done')
+
+{
+    'header': {'username': '', 'session': '', 'msg_id': '7bec4dd2e4f943bf9b7311f4e3a0ad12', 'msg_type': 'execute_request', 'version': '5.0', 'date': ''},
+    'parent_header': {},
+    'channel': 'shell',
+    'content': {'code': "\nprint('hello world')\n\nfrom tqdm import tqdm\n\nfor _ in tqdm(range(5)):\n    time.sleep(0.2)\n\nprint('done')\n", 'silent': False, 'store_history': True, 'user_expressions': None, 'allow_stdin': True, 'stop_on_error': True},
+    'metadata': {},
+    'buffers': {}
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_9', 'msg_type': 'status', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:30.967679Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_9',
+    'msg_type': 'status',
+    'parent_header': {'msg_id': 'a921bb5c-d64c6720c10b073770600ad8_12119_2', 'msg_type': 'kernel_info_request', 'username': 'nova', 'session': 'a921bb5c-d64c6720c10b073770600ad8', 'date': '2024-05-15T13:37:30.966996Z', 'version': '5.3'},
+    'metadata': {},
+    'content': {'execution_state': 'busy'},
+    'buffers': [],
+    'channel': 'iopub'
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_12', 'msg_type': 'status', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:30.968196Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_12',
+    'msg_type': 'status',
+    'parent_header': {'msg_id': 'a921bb5c-d64c6720c10b073770600ad8_12119_1', 'msg_type': 'kernel_info_request', 'username': 'nova', 'session': 'a921bb5c-d64c6720c10b073770600ad8', 'date': '2024-05-15T13:37:30.966923Z', 'version': '5.3'},
+    'metadata': {},
+    'content': {'execution_state': 'idle'},
+    'buffers': [],
+    'channel': 'iopub'
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_13', 'msg_type': 'status', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:30.968393Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_13',
+    'msg_type': 'status',
+    'parent_header': {'msg_id': 'a921bb5c-d64c6720c10b073770600ad8_12119_2', 'msg_type': 'kernel_info_request', 'username': 'nova', 'session': 'a921bb5c-d64c6720c10b073770600ad8', 'date': '2024-05-15T13:37:30.966996Z', 'version': '5.3'},
+    'metadata': {},
+    'content': {'execution_state': 'idle'},
+    'buffers': [],
+    'channel': 'iopub'
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_14', 'msg_type': 'status', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:30.969350Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_14',
+    'msg_type': 'status',
+    'parent_header': {'username': '', 'session': '', 'msg_id': '7bec4dd2e4f943bf9b7311f4e3a0ad12', 'msg_type': 'execute_request', 'version': '5.0', 'date': ''},
+    'metadata': {},
+    'content': {'execution_state': 'busy'},
+    'buffers': [],
+    'channel': 'iopub'
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_15', 'msg_type': 'execute_input', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:30.969452Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_15',
+    'msg_type': 'execute_input',
+    'parent_header': {'username': '', 'session': '', 'msg_id': '7bec4dd2e4f943bf9b7311f4e3a0ad12', 'msg_type': 'execute_request', 'version': '5.0', 'date': ''},
+    'metadata': {},
+    'content': {'code': "\nprint('hello world')\n\nfrom tqdm import tqdm\n\nfor _ in tqdm(range(5)):\n    time.sleep(0.2)\n\nprint('done')\n", 'execution_count': 1},
+    'buffers': [],
+    'channel': 'iopub'
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_16', 'msg_type': 'stream', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:31.042286Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_16',
+    'msg_type': 'stream',
+    'parent_header': {'msg_id': '7bec4dd2e4f943bf9b7311f4e3a0ad12', 'session': '', 'version': '5.0', 'username': '', 'msg_type': 'execute_request', 'date': ''},
+    'metadata': {},
+    'content': {'name': 'stdout', 'text': 'hello world\n'},
+    'buffers': [],
+    'channel': 'iopub'
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_17', 'msg_type': 'error', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:31.042663Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_17',
+    'msg_type': 'error',
+    'parent_header': {'username': '', 'session': '', 'msg_id': '7bec4dd2e4f943bf9b7311f4e3a0ad12', 'msg_type': 'execute_request', 'version': '5.0', 'date': ''},
+    'metadata': {},
+    'content': {
+        'traceback': [
+            '\x1b[0;31m---------------------------------------------------------------------------\x1b[0m',
+            '\x1b[0;31mModuleNotFoundError\x1b[0m                       Traceback (most recent call last)',
+            "Cell \x1b[0;32mIn[1], line 3\x1b[0m\n\x1b[1;32m      1\x1b[0m \x1b[38;5;28mprint\x1b[39m(\x1b[38;5;124m'\x1b[39m\x1b[38;5;124mhello world\x1b[39m\x1b[38;5;124m'\x1b[39m)\n\x1b[0;32m----> 3\x1b[0m \x1b[38;5;28;01mfrom\x1b[39;00m \x1b[38;5;21;01mtqdm\x1b[39;00m 
+\x1b[38;5;28;01mimport\x1b[39;00m tqdm\n\x1b[1;32m      5\x1b[0m \x1b[38;5;28;01mfor\x1b[39;00m _ \x1b[38;5;129;01min\x1b[39;00m tqdm(\x1b[38;5;28mrange\x1b[39m(\x1b[38;5;241m5\x1b[39m)):\n\x1b[1;32m      6\x1b[0m     
+time\x1b[38;5;241m.\x1b[39msleep(\x1b[38;5;241m0.2\x1b[39m)\n",
+            "\x1b[0;31mModuleNotFoundError\x1b[0m: No module named 'tqdm'"
+        ],
+        'ename': 'ModuleNotFoundError',
+        'evalue': "No module named 'tqdm'"
+    },
+    'buffers': [],
+    'channel': 'iopub'
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_18', 'msg_type': 'execute_reply', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:31.043636Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_18',
+    'msg_type': 'execute_reply',
+    'parent_header': {'username': '', 'session': '', 'msg_id': '7bec4dd2e4f943bf9b7311f4e3a0ad12', 'msg_type': 'execute_request', 'version': '5.0', 'date': ''},
+    'metadata': {'started': '2024-05-15T13:37:30.969440Z', 'dependencies_met': True, 'engine': '4131ae88-194c-423e-aeeb-e67bf7885a24', 'status': 'error'},
+    'content': {
+        'status': 'error',
+        'traceback': [
+            '\x1b[0;31m---------------------------------------------------------------------------\x1b[0m',
+            '\x1b[0;31mModuleNotFoundError\x1b[0m                       Traceback (most recent call last)',
+            "Cell \x1b[0;32mIn[1], line 3\x1b[0m\n\x1b[1;32m      1\x1b[0m \x1b[38;5;28mprint\x1b[39m(\x1b[38;5;124m'\x1b[39m\x1b[38;5;124mhello world\x1b[39m\x1b[38;5;124m'\x1b[39m)\n\x1b[0;32m----> 3\x1b[0m \x1b[38;5;28;01mfrom\x1b[39;00m \x1b[38;5;21;01mtqdm\x1b[39;00m 
+\x1b[38;5;28;01mimport\x1b[39;00m tqdm\n\x1b[1;32m      5\x1b[0m \x1b[38;5;28;01mfor\x1b[39;00m _ \x1b[38;5;129;01min\x1b[39;00m tqdm(\x1b[38;5;28mrange\x1b[39m(\x1b[38;5;241m5\x1b[39m)):\n\x1b[1;32m      6\x1b[0m     
+time\x1b[38;5;241m.\x1b[39msleep(\x1b[38;5;241m0.2\x1b[39m)\n",
+            "\x1b[0;31mModuleNotFoundError\x1b[0m: No module named 'tqdm'"
+        ],
+        'ename': 'ModuleNotFoundError',
+        'evalue': "No module named 'tqdm'",
+        'engine_info': {'engine_uuid': '4131ae88-194c-423e-aeeb-e67bf7885a24', 'engine_id': -1, 'method': 'execute'},
+        'execution_count': 1,
+        'user_expressions': {},
+        'payload': []
+    },
+    'buffers': [],
+    'channel': 'shell'
+}
+{
+    'header': {'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_19', 'msg_type': 'status', 'username': 'nova', 'session': '395aec80-2b54db1d68b0d523ebe207da', 'date': '2024-05-15T13:37:31.044141Z', 'version': '5.3'},
+    'msg_id': '395aec80-2b54db1d68b0d523ebe207da_44135_19',
+    'msg_type': 'status',
+    'parent_header': {'username': '', 'session': '', 'msg_id': '7bec4dd2e4f943bf9b7311f4e3a0ad12', 'msg_type': 'execute_request', 'version': '5.0', 'date': ''},
+    'metadata': {},
+    'content': {'execution_state': 'idle'},
+    'buffers': [],
+    'channel': 'iopub'
+}

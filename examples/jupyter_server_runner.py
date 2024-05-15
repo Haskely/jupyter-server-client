@@ -1,18 +1,21 @@
 import pexpect
-import time
 from typing import Literal
+import asyncio
 
-    # --IdentityProvider.token="" \
-    # --ServerApp.allow_credentials=True \
-    # --ServerApp.allow_external_kernels=True \
-    # --ServerApp.allow_origin="*" \
-    # --ServerApp.allow_remote_access=True \
-    # --ServerApp.disable_check_xsrf=True \
-    # --ServerApp.ip="0.0.0.0" \
-    # --ServerApp.open_browser=False \
-    # --ServerApp.port=8888 \
-    # --ServerApp.root_dir="/home/jovyan/jupyter_workdir"
-
+"""
+# https://jupyter-server.readthedocs.io/en/latest/users/configuration.html
+jupyter server \
+    --IdentityProvider.token="" \
+    --ServerApp.allow_credentials=True \
+    --ServerApp.allow_external_kernels=True \
+    --ServerApp.allow_origin="*" \
+    --ServerApp.allow_remote_access=True \
+    --ServerApp.disable_check_xsrf=True \
+    --ServerApp.ip="0.0.0.0" \
+    --ServerApp.open_browser=False \
+    --ServerApp.port=8888 \
+    --ServerApp.root_dir="/home/jovyan/jupyter_workdir"
+"""
 
 class JupyterServerRunner:
     def __init__(
@@ -49,6 +52,13 @@ class JupyterServerRunner:
     
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.stop_server()
+        
+    async def __aenter__(self):
+        await asyncio.to_thread(self.start_server)
+        return self
+    
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await asyncio.to_thread(self.stop_server)
 
     def start_server(self):
         if self.server_process is not None:
