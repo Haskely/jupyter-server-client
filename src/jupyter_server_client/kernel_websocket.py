@@ -1,9 +1,10 @@
-# https://jupyter-client.readthedocs.io/en/latest/messaging.html#general-message-format 
+# https://jupyter-client.readthedocs.io/en/latest/messaging.html#general-message-format
 import aiohttp
 import asyncio
 from rich import print
 from uuid import uuid4
 from typing import Literal, TypedDict
+
 
 class StreamOutput(TypedDict):
     output_type: Literal["stream"]
@@ -33,13 +34,15 @@ class ExecOutput(TypedDict):
 
 class KernelWebSocketClient:
     def __init__(self, ws_url: str, headers: dict = {}) -> None:
-        self.ws_url = ws_url 
+        self.ws_url = ws_url
         self.headers = headers
 
     @property
     def ws(self):
         if not hasattr(self, "_ws"):
-            raise NotImplementedError("请通过 async with KernelChannelWebSocket(ws_context) as ws: ... 语法来使用")
+            raise NotImplementedError(
+                "请通过 async with KernelChannelWebSocket(ws_context) as ws: ... 语法来使用"
+            )
         return self._ws
 
     async def __aenter__(self):
@@ -54,32 +57,32 @@ class KernelWebSocketClient:
         await self.session.__aexit__(exc_type, exc_val, exc_tb)
 
     async def execute(self, code: str, timeout: int = 10):
-        """References: 
+        """References:
         - https://github.com/jupyter/kernel_gateway_demos/blob/master/python_client_example/src/client.py#L63
-        - https://jupyter-client.readthedocs.io/en/latest/messaging.html#general-message-format 
+        - https://jupyter-client.readthedocs.io/en/latest/messaging.html#general-message-format
         """
         data = {
-            'header': {
+            "header": {
                 # process name for example
-                'username': '', 
-                # The session id in a message header identifies a unique entity with state, such as a kernel process or client process. 
-                # If a client disconnects and reconnects to a kernel, 
-                # and messages from the kernel have a different kernel session id than prior to the disconnect, 
+                "username": "",
+                # The session id in a message header identifies a unique entity with state, such as a kernel process or client process.
+                # If a client disconnects and reconnects to a kernel,
+                # and messages from the kernel have a different kernel session id than prior to the disconnect,
                 # the client should assume that the kernel was restarted.
-                'session': '', 
+                "session": "",
                 # typically UUID, must be unique per message
-                'msg_id': uuid4().hex,
-                'msg_type': 'execute_request',
+                "msg_id": uuid4().hex,
+                "msg_type": "execute_request",
                 # the message protocol version
                 "version": "5.0",
                 # ISO 8601 timestamp for when the message is created
                 "date": "",
             },
-            # When a message is the “result” of another message, such as a side-effect (output or status) or direct reply, 
+            # When a message is the “result” of another message, such as a side-effect (output or status) or direct reply,
             # the parent_header is a copy of the header of the message that “caused” the current message.
-            'parent_header': {}, 
-            'channel': 'shell',
-            'content': {
+            "parent_header": {},
+            "channel": "shell",
+            "content": {
                 "code": code,
                 "silent": False,
                 "store_history": True,
@@ -87,23 +90,29 @@ class KernelWebSocketClient:
                 "allow_stdin": True,
                 "stop_on_error": True,
             },
-            'metadata': {},
-            'buffers': {}
+            "metadata": {},
+            "buffers": {},
         }
         print(data)
         await self.ws.send_json(data)
+
         # 从 queue 读取执行结果，直到 idle
         async def _receive_task():
             while True:
-                msg = await self.ws.receive_json()
+                msg: dict[str, dict] = await self.ws.receive_json()
                 print(msg)
-                if msg["parent_header"]["msg_id"] == data["header"]["msg_id"] and msg["header"]["msg_type"] == "status" and msg["content"]["execution_state"] == "idle":
+                if (
+                    msg["parent_header"]["msg_id"] == data["header"]["msg_id"]  # type: ignore
+                    and msg["header"]["msg_type"] == "status"
+                    and msg["content"]["execution_state"] == "idle"
+                ):
                     break
-        
+
         try:
             await asyncio.wait_for(_receive_task(), timeout=timeout)
         except asyncio.TimeoutError:
             print("timeout")
-        
+
+
 if __name__ == "__main__":
     pass

@@ -23,14 +23,14 @@ if __name__ == "__main__":
 
             kernel_info = await client.start_a_kernel()
             print("创建 kernel", kernel_info, "\n")
-            
+
             kernel_list = await client.get_kernels()
             print("获取 kernel 列表", kernel_list, "\n")
-            
+
             print("获取 kernel", await client.get_kernel(kernel_list[0]["id"]), "\n")
-            
+
             print("获取 spec", await client.get_kernelspecs(), "\n")
-            
+
             print(f"执行代码:{example_code}")
             async with client.connect_kernel(kernel_info["id"]) as kernel:
                 await kernel.execute(example_code)

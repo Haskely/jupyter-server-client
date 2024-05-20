@@ -7,5 +7,3 @@ A Python-based Jupyter server Client that allows you to directly connect to a de
 ```bash
 pip install jupyter-server-client
 ```
-
-

@@ -18,12 +18,16 @@ class Foo(TypedDict):
 
 async def _raise_for_status(response: aiohttp.ClientResponse):
     if response.status > 399:
-        raise Exception(f"请求失败! status_code:{response.status} - request:{response.request_info} - response:{await response.read()}")
+        raise Exception(
+            f"请求失败! status_code:{response.status} - request:{response.request_info} - response:{await response.read()}"
+        )
     return response
 
 
 class JupyterServerClient:
-    def __init__(self, base_url: str = "http://localhost:8888", token: str = "") -> None:
+    def __init__(
+        self, base_url: str = "http://localhost:8888", token: str = ""
+    ) -> None:
         self.base_url = base_url.strip("/")
 
         if self.base_url.startswith("http://"):
@@ -34,7 +38,7 @@ class JupyterServerClient:
             raise ValueError(f"无效的 url: {self.base_url}")
 
         self.token = token
-    
+
     @property
     def headers(self):
         return {"Authorization": self.token}
@@ -42,7 +46,9 @@ class JupyterServerClient:
     @property
     def session(self):
         if not hasattr(self, "_session"):
-            raise NotImplementedError("请通过 async with JupyterServerClient() as client: ... 语法来使用本 Client")
+            raise NotImplementedError(
+                "请通过 async with JupyterServerClient() as client: ... 语法来使用本 Client"
+            )
         return self._session
 
     async def __aenter__(self):
@@ -78,8 +84,7 @@ class JupyterServerClient:
         name: str,
         type: Literal["notebook", "file", "directory"],
     ) -> dict:
-        """https://jupyter-server.readthedocs.io/en/latest/developers/rest-api.html#put--api-contents-path
-        """
+        """https://jupyter-server.readthedocs.io/en/latest/developers/rest-api.html#put--api-contents-path"""
         async with self.session.put(
             f"/api/contents/{path}",
             json=dict(
@@ -103,9 +108,13 @@ class JupyterServerClient:
         Returns:
             _type_: _description_
         """
-        return await self._put_contents(path=path, content="", format="text", name="", type="directory")
+        return await self._put_contents(
+            path=path, content="", format="text", name="", type="directory"
+        )
 
-    async def upload_file(self, path: str, content: str = "", format: Literal["text", "base64"] = "text"):
+    async def upload_file(
+        self, path: str, content: str = "", format: Literal["text", "base64"] = "text"
+    ):
         """上传文件，path 是相对路径，如果是绝对路径会 404
         如果文件目录不存在会 500
 
@@ -137,7 +146,7 @@ class JupyterServerClient:
     async def create_session(
         self,
         id: str = "",
-        kernel: dict = None,
+        kernel: dict | None = None,
         name: str = "",
         path: str = "",
         type: str = "",
@@ -283,7 +292,10 @@ class JupyterServerClient:
             return await response.json()
 
     def connect_kernel(self, kernel_id: str) -> KernelWebSocketClient:
-        return KernelWebSocketClient(self.ws_base_url + f"/api/kernels/{kernel_id}/channels", headers=self.headers)
+        return KernelWebSocketClient(
+            self.ws_base_url + f"/api/kernels/{kernel_id}/channels",
+            headers=self.headers,
+        )
 
     async def get_terminals(self) -> dict:
         """https://jupyter-server.readthedocs.io/en/latest/developers/rest-api.html#get--api-terminals
@@ -359,7 +371,7 @@ class JupyterServerClient:
             await _raise_for_status(response)
             return await response.json()
 
-    def connect_terminal(self, terminal: str) -> None:
+    def connect_terminal(self, terminal: str):
         ws_context = self.session.ws_connect(
             self.ws_base_url + f"/api/terminals/{terminal}/channels",
         )
@@ -376,11 +388,11 @@ if __name__ == "__main__":
 
     async def test():
         print(await client.api())
-        print(await client.contents(""))
-        print(await client.contents("24点.png"))
+        print(await client.get_file_or_dir(""))
+        print(await client.get_file_or_dir("24点.png"))
 
         print(datetime.now(), "mao_file downloading...")
-        await client.contents("猫.png")
+        await client.get_file_or_dir("猫.png")
         print(datetime.now(), "mao_file downloaded")
 
     asyncio.run(test())
